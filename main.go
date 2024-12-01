@@ -14,13 +14,16 @@ type Game struct {
 
 func (g *Game) Update() error {
 	g.count++
+	isIdle(g, 19)
+	isHoldingJump(g, 5)
+	isJumping(g, 3)
 	return nil
 }
 
+var PlayerSprite *ebiten.Image
+
 func (g *Game) Draw(screen *ebiten.Image) {
-	playerImage := mustLoadImage("./animations/sweepy-idle.png")
-	playerSprite := convertToSprite(g, playerImage, 19)
-	screen.DrawImage(playerSprite, nil)
+	screen.DrawImage(PlayerSprite, nil)
 	ebitenutil.DebugPrint(screen, "Hello, World!")
 }
 
